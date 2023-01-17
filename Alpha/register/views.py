@@ -21,7 +21,7 @@ def signup(request):
 
 
 
-	return render(request, 'register/signup.html')
+	return render(request, 'register/signup.html', {'title':'Sign Up'})
 
 def login(request):
 
@@ -38,4 +38,4 @@ def login(request):
 		else:
 			return HttpResponse("Your login credentials are wrong!!!")
 
-	return render(request, 'register/login.html')
+	return render(request, 'register/login.html', {'title' : 'Login'})
