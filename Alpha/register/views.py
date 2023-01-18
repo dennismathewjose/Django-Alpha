@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate
 from django.contrib.auth import login as auth_login
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def signup(request):
 
@@ -39,3 +41,7 @@ def login(request):
 			return HttpResponse("Your login credentials are wrong!!!")
 
 	return render(request, 'register/login.html', {'title' : 'Login'})
+
+@login_required
+def profile(request):
+	return render(request, 'register/profile.html',{'title':'profile'})
