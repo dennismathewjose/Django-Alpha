@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from register import views
 from django.contrib.auth import views as auth_view
+from chat import views as chatView
 
 urlpatterns = [
 
@@ -25,6 +26,7 @@ urlpatterns = [
     path('login/',auth_view.LoginView.as_view(template_name = 'register/login.html'), name='login'),
     path('profile/', views.profile, name = 'profile'),
     path('logout/', auth_view.LogoutView.as_view(template_name = 'register/logout.html'),name = 'logout'),
-    path('',include('home.urls'))
+    path('home/', include('home.urls')),
+    path('',chatView.videocallview, name ='videocalview')
 
 ]
