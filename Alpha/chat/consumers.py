@@ -1,5 +1,5 @@
 from channels.generic.websocket import AsyncWebSocketConusmer
-import json
+import json 
 
 class chatConsumer(AsyncWebSocketConusmer):
     #join a room

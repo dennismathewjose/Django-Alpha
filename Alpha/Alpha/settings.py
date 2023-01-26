@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 
+    'channels',
     'home.apps.HomeConfig',
     'register.apps.RegisterConfig',
     'chat.apps.ChatConfig',
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels',
+    
 ]
 
 MIDDLEWARE = [
@@ -74,7 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Alpha.wsgi.application'
-
+ASGI_APPLICATION = 'Alpha.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -133,7 +134,7 @@ LOGIN_URL = 'login'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-ASGI_APPLICATION = 'Alpha.asgi.application'
+
 
 CHANNEL_LAYERS = {
     "default": {
