@@ -62,7 +62,42 @@
 				<video id="remoteVideo" autoplay playsinline></video>
 	
 				<div>
-                    <h4 id = labelUser>Who do you want to call?</h4>
+					<form class="container" method="POST" action="">
+						{%csrf_token%}
+						<h4 id = labelUser>Who do you want to call?</h4>
+						<input type="text" size="30" class="form-control" name = "chat-username" id="chat-username" />
+						<button type="submit" class="btn btn-success btn-sm" id="callButton">Call</button> 
+					</form>
+						<!-- <script>
+							var inputUsername = document.querySelector('#chat-username');
+							var callButton = document.querySelector('#callButton');
+	
+							var username;
+							callButton.addEventListener('click', () => {
+								username = "calling" +inputUsername.value;
+	
+								console.log('username:',username);
+								if (username == ''){
+									return;
+								}
+								inputUsername.value = '';
+								inputUsername.disabled = true;
+								inputUsername.style.visibility = 'hidden';
+	
+								callButton.disabled = true;
+								callButton.style.visibility = 'hidden';
+	
+								var labelUsername = document.querySelector('#labelUsr');
+								labelUsername.innerHTML = username;
+	
+							});
+						</script> -->
+	
+						<button class="btn btn-primary btn-sm" id="startButton">Start</button>
+						<button class="btn btn-danger btn-sm" id="hangupButton">Hang Up</button>
+					</div>
+					
+                    <!-- <h4 id = labelUser>Who do you want to call?</h4>
 					<input id="chat-username" type="text" size="30"/>
 					<button class="btn btn-success btn-sm" id="callButton">Call</button>
 
@@ -93,7 +128,7 @@
 
 					<button class="btn btn-primary btn-sm" id="startButton">Start</button>
 					<button class="btn btn-danger btn-sm" id="hangupButton">Hang Up</button>
-				</div>
+				</div> -->
 			</section>
 			<section class="col-md-4 chat">
 				

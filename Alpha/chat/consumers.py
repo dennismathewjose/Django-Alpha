@@ -1,41 +1,57 @@
-from channels.generic.websocket import AsyncWebSocketConusmer
+from channels.generic.websocket import AsyncJSonWebSocketConusmer
 import json 
 
-class chatConsumer(AsyncWebSocketConusmer):
+class chatConsumer(AsyncJsonWebSocketConusmer):
     #join a room
     async def connect(self):
-        self.room_group_name = 'Test-room'
-
-        await self.channel_layer.group_add(
-            self.room_group_name,
-            self.channel_name
-        )
-
         await self.accept()
-
-    async def disconnect(self, close_code):
-        #leave a room group
-        await self.channel_layer.group_discard(
-            self.room_group_name,
-            self.channel_name
-        )
-        print('Disconnected ')
-
-    async def receive(self, text_data):
-        received_data = json.loads(text_data)
-        message = received_data['message']
-
-        await self.channel_layer.group_send(
-            self.room_group_name,{
-                'type' : 'send_message',
-                'message' : message
-            }
-        )
     
-    async def send_message(self, event):
-        message = event['message']
+    async def receive_json(self, content):
+        if content['command'] == 'join_room':
+            await self.channel_layer.group_add(content['room'],self.channel_name)
+            print('added')
+        elif content['command'] == 'join':
+            await self.channel_layer.group_send(content['room'],{
+                'type' : 'join.message',
+            })
+        elif content['command'] == 'offer':
+            await self.channel_layyer.group_send(content['room'],{
+                'type' : 'offer.message',
+                'offer' : content['offer'],
+            })
+        elif content['command'] == 'answer':
+            await self.channel_layer.group_send(content['room'],{
+                'type' : 'answer.message',
+                'answer' : content['answer']
+            })
+        elif content['candidate'] == 'candidate':
+            await self.channel_layer.group_send(content['room',{
+                'type' : 'candidate.message',
+                'candidate' : content['candidate'],
+                'iscreated' : content['iscreated']
+            }])
 
-        await self.send(text_data = json.dumps({
-            'message' : message
-        }))
+    
+    async def join_message(self,event):
+        await self.send_json({
+            'command' : 'join'
+        })
+    async def offer_message(self,event):
+        await self.send_json({
+            'command' : 'offer',
+            'offer' : event['offer']
+        })
+    async def answer_message(self,event):
+        await self.send_json({
+            'command' : 'answer',
+            'answer' : event['answer']
+        })
+    async def candidate_message(self,event):
+        await self.send_json({
+            'command' : 'candidate',
+            'candidate' : event['candidate'],
+            'iscreated' : event['iscreated'] 
+        })
 
+        
+    

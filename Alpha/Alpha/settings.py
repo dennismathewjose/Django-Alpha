@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
     'channels',
     'home.apps.HomeConfig',
     'register.apps.RegisterConfig',
@@ -75,7 +74,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Alpha.wsgi.application'
-ASGI_APPLICATION = 'Alpha.routing.application'
+ASGI_APPLICATION = 'Alpha.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    }, 
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -134,11 +142,3 @@ LOGIN_REDIRECT_URL = 'home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-
-
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
-}

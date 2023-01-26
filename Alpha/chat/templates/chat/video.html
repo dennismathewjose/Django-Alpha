@@ -1,0 +1,28 @@
+{%extends "home/index.html"%}
+{%block content%}
+{%load static%}
+
+<div class="container">
+    <div class="row py-2">
+      <div class="col-sm">
+        <video height="300" id="user"></video>
+      </div>
+      <div class="col-sm">
+        <video height="300" id="remote"></video>
+      </div>
+    </div>
+  </div>
+
+  <button id="call" style="display: none" class="btn btn-outline-primary my-3 mx-3">Call</button>
+  <button id="camera">Mute</button>
+
+  <script>
+    const usr_vdo = document.getElementById('user');
+    const remote_vdo = document.getElementById('remote');
+    let stream;
+    let rtcpeerconnection;
+    
+
+  </script>
+
+  {%endblock content%}
