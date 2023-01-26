@@ -7,6 +7,7 @@ from chat import views as chat_view
 urlpatterns = [
 
     path('', views.home, name = 'home'),
+    #path('',chatView.videocallview, name ='videocalview')
 
 ]
 
