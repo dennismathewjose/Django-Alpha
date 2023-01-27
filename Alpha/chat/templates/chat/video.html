@@ -19,9 +19,57 @@
   <script>
     const usr_vdo = document.getElementById('user');
     const remote_vdo = document.getElementById('remote');
+    const call_btn = document.getElementById('call') 
     let stream;
     let rtcpeerconnection;
-    
+    const created = '{{created}}'
+    const room = '{{room}}'
+    let isCreated;
+
+    const ws = new WebSocket("ws://127.0.0.1:8000/ws/");
+    ws.onopen = () =>{
+      console.log('opened')
+      ws.send(JSON.stringify({
+        'command' : 'join_room',
+        'room' : room
+      }))
+      if (created == 'created'){
+        isCreated = true
+        navigator.mediaDevices.getUserMedia({
+          video : true,
+          audio : true
+        }).then(s =>{
+          stream = s;
+          usr_vdo.srcObject = s;
+          usr_vdo.onloadeddata = () =>{
+            usr_vdo.play()
+          }
+        })
+        console.log(isCreated)
+      }
+      else{
+        isCreated = false
+        navigator.mediaDevices.getUserMedia({
+          video : true,
+          audio : true
+        }).then(s =>{
+          stream = s;
+          usr_vdo.srcObject = s;
+          usr_vdo.onloadeddata = () =>{
+            usr_vdo.play()
+          }
+          ws.send(JSON.stringify({
+            'command':'join',
+            'room' : room
+          }))
+        })
+        console.log(isCreated)
+      }
+    }
+    ws.onmessage = (e) => {
+      const data = JSON.parse(e.data)
+      console.log(data)
+    }
 
   </script>
 

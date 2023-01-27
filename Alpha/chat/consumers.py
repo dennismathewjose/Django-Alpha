@@ -1,7 +1,7 @@
-from channels.generic.websocket import AsyncJSonWebSocketConusmer
+from channels.generic.websocket import AsyncJsonWebsocketConsumer
 import json 
 
-class chatConsumer(AsyncJsonWebSocketConusmer):
+class chatConsumer(AsyncJsonWebsocketConsumer):
     #join a room
     async def connect(self):
         await self.accept()
