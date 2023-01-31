@@ -22,11 +22,11 @@
     const call_btn = document.getElementById('call') 
     let stream;
     let rtcpeerconnection;
-    const created = '{{created}}'
-    const room = '{{room}}'
+    const created = '{{created}}';
+    const room = '{{room}}';
     let isCreated;
 
-    const ws = new WebSocket("ws://127.0.0.1:8000/ws/");
+    const ws = new WebSocket("ws://192.168.38.130:8000/");
     ws.onopen = () =>{
       console.log('opened')
       ws.send(JSON.stringify({
