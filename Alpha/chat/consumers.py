@@ -31,7 +31,6 @@ class chatConsumer(AsyncJsonWebsocketConsumer):
                 'iscreated' : content['iscreated']
             }])
 
-    
     async def join_message(self,event):
         await self.send_json({
             'command' : 'join'
