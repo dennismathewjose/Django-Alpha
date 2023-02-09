@@ -15,7 +15,7 @@ class chatConsumer(AsyncJsonWebsocketConsumer):
                 'type' : 'join.message',
             })
         elif content['command'] == 'offer':
-            await self.channel_layyer.group_send(content['room'],{
+            await self.channel_layer.group_send(content['room'],{
                 'type' : 'offer.message',
                 'offer' : content['offer'],
             })
@@ -24,12 +24,12 @@ class chatConsumer(AsyncJsonWebsocketConsumer):
                 'type' : 'answer.message',
                 'answer' : content['answer']
             })
-        elif content['candidate'] == 'candidate':
-            await self.channel_layer.group_send(content['room',{
+        elif content['command'] == 'candidate':
+            await self.channel_layer.group_send(content['room'],{
                 'type' : 'candidate.message',
                 'candidate' : content['candidate'],
                 'iscreated' : content['iscreated']
-            }])
+            })
 
     async def join_message(self,event):
         await self.send_json({

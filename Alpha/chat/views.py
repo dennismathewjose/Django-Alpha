@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from . models import Chat
+from .models import Chat
 # Create your views here.
 
 
@@ -20,6 +20,6 @@ def videocallview(request):
                 return redirect(f'/chat/{u_name}/created/')
     return render(request, 'chat/vdoui.html')
 
-@login_required
+#@login_required
 def video(request, room, created):
     return render(request, 'chat/video.html',{'room':room, 'created': created })

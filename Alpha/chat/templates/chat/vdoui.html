@@ -58,17 +58,17 @@
 		<div class="row">
 			<section class="col-md-8">
 				<h1>Welcome Back {{user.username}}</h1>
-				<!-- <video id="localVideo" autoplay playsinline></video>
-				<video id="remoteVideo" autoplay playsinline></video> -->
+				 <video id="localVideo" autoplay playsinline></video>
+				<video id="remoteVideo" autoplay playsinline></video>
 				
 				<div>
 					<form class="container" method="POST" action="">
 						{%csrf_token%}
-						<h4 id = labelUser>Who do you want to call?</h4>
-						<input type="text" size="30" class="form-control" name = "chat-username" id="chat-username" />
-						<button type="submit" class="btn btn-success btn-sm" id="callButton">Call</button> 
-						<button class="btn btn-primary btn-sm" id="startButton">Start</button>
-						<button class="btn btn-danger btn-sm" id="hangupButton">Hang Up</button>
+						<h4 id = labelUser>Join the room</h4>
+						<input type="text" size="30" class="form-control" name = "chat-username" id="chat-username">
+						<button type="submit" class="btn btn-primary btn-sm" id="callButton" style="padding-top : 10px;">Start</button> 
+						<!-- <button class="btn btn-primary btn-sm" id="startButton">Start</button>
+						<button class="btn btn-danger btn-sm" id="hangupButton">Hang Up</button> -->
 					</form>
 	
 				</div>
