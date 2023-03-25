@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{% block content %}
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.13.1/ace.js"
+integrity="sha512-IQmiIneKUJhTJElpHOlsrb3jpF7r54AzhCTi7BTDLiBVg0f7mrEqWVCmOeoqKv5hDdyf3rbbxBUgYf4u3O/QcQ=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.13.1/theme-twilight.min.js"
+integrity="sha512-72aFN8YKWn7TNB0ZfHKTYnEmCQyAEtyB+X48j37Z9WEGdSgZIIFzmAC6kM5d1+gVzWA22GcNN380FN4yo80cJA=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.13.1/mode-python.min.js"
+integrity="sha512-W1k0SdTb7FU3nxWYkBLQVhTC8b8BU6Je3deBSnLm/dSQ956goMMnL+NYi2SXse1i7k0eUJNMNycTvbEdrJmEFw=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"
+  integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ=="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+<script>
+
+let drawQueue = [] //for canvas
+
+var editor = ace.edit("editor");
+editor.setTheme("ace/theme/twilight");
+document.getElementById('editor').style.fontSize='14px';
+editor.session.setMode("ace/mode/python");
+
+
+</script>
+{%end blockcontent%}
