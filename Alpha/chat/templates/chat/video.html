@@ -3,6 +3,33 @@
 {%load static%}
 
   <style>
+      button {
+      background-color: #d84a38;
+      border: none;
+      border-radius: 2px;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.8em;
+      margin: 0 0 1em 0;
+      padding: 0.5em 0.7em 0.6em 0.7em;
+    }
+
+    button:active {
+      background-color: #cf402f;
+    }
+
+    button:hover {
+      background-color: #cf402f;
+    }
+
+    button[disabled] {
+      color: #ccc;
+    }
+
+    button[disabled]:hover {
+      background-color: #d84a38;
+    }
+
 #video-streams{
     display: flex;
     flex-wrap: wrap;
@@ -85,7 +112,11 @@
         </div>
 
         <div class = "icon-wrapper">
-          <button id="call" style="display: none" class="btn btn-outline-primary my-3 mx-3">Call</button>
+          <button id="call" style="display: none">Call</button>
+         </div>
+
+         <div class = "icon-wrapper">
+            <button id = "record" disabled>Record</button>
          </div>
 
     </section>
@@ -263,6 +294,45 @@
     remote_vdo.play();
     };
   }
+
+
+
+  let merdiaRecorder;
+  let recordedBlobs;
+
+  // const recordedVideo = document.querySelector('video#record')
+  let codecPreferences; 
+  const recordButtton = document.querySelector('button#record');
+
+  recordButtton.addEventListener('click',() => {
+    if (recordButtton.textContent == 'Record'){
+      startRecording();
+    }
+    else{
+      stopRecording();
+
+    }
+  });
+
+  function getSupportedMimeTypes() {
+  const possibleTypes = [
+    'video/webm;codecs=vp9,opus',
+    'video/webm;codecs=vp8,opus',
+    'video/webm;codecs=h264,opus',
+    'video/mp4;codecs=h264,aac',
+  ];
+    return possibleTypes.filter(mimeType => {
+      return MediaRecorder.isTypeSupported(mimeType);
+    });
+  }
+
+
+
+  function startRecording(){
+    recordedBlobs = [];
+    
+  }
+
 </script>
 
 

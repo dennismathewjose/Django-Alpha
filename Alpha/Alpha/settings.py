@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-l*7kz4)-n=^$5yf5mn!7+p2%_6vf0a-qm(@pmdoi3!wq7yrsk0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['43.207.56.204','192.168.1.5','127.0.0.1','192.168.164.130','18.176.158.177']
+ALLOWED_HOSTS = ['43.207.56.204','192.168.1.5','127.0.0.1','192.168.164.130','18.176.158.177','192.168.43.252']
 
 
 # Application definition
@@ -36,17 +36,18 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'register.apps.RegisterConfig',
     'chat.apps.ChatConfig',
+    'shareeditor.apps.ShareeditorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sslserver',
     
 ]
 
 MIDDLEWARE = [
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

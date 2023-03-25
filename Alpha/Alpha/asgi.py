@@ -11,6 +11,7 @@ import os
 from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
 import chat.routing
+import shareeditor.routing
 from channels.auth import AuthMiddlewareStack 
 
 
@@ -24,7 +25,7 @@ application = ProtocolTypeRouter({
     # Just HTTP for now. (We can add other protocols later.)
     "websocket" : AuthMiddlewareStack(
         URLRouter(
-            chat.routing.websocket_urlpatterns
+            chat.routing.websocket_urlpatterns + shareeditor.routing.websocket_urlpatterns
         )
     )
 })

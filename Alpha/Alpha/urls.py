@@ -18,6 +18,7 @@ from django.urls import path, include
 from register import views
 from django.contrib.auth import views as auth_view
 from chat import views as chatView
+from shareeditor import views as editView
 
 urlpatterns = [
 
@@ -28,6 +29,7 @@ urlpatterns = [
     path('logout/', auth_view.LogoutView.as_view(template_name = 'register/logout.html'),name = 'logout'),
     path('home/', include('home.urls')),
     path('',chatView.videocallview, name ='videocalview'),
-    path('chat/<str:room>/<str:created>/',chatView.video, name = 'video')
+    path('chat/<str:room>/<str:created>/',chatView.video, name = 'video'),
+    path('editor/',editView.editor,name = 'editor'),
 
 ]
